@@ -1,11 +1,10 @@
 const Home = (props) => {
-	// const { msgAlert, user } = props
-	console.log('props in home', props)
+	console.log('props in home: \n', props)
 
 	return (
-		<>
-			<h2>Home Page</h2>
-		</>
+		<div className="container-md">
+			<h2>Project W3 - Home Page</h2>
+		</div>
 	)
 }
 
