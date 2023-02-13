@@ -1,13 +1,14 @@
-import GoalsIndex from './goals/GoalsIndex'
+import UsersIndex from "./users/UsersIndex"
+
 const Home = (props) => {
-	// const { msgAlert, user } = props
-	console.log('props in home', props)
+	console.log('props in home: \n', props)
 
 	return (
-		<>
-			<h2>Goals Page</h2>
-		
-		</>
+
+		<div className="container-md">
+			<h2>Project W3 - Home Page</h2>
+			<UsersIndex msgAlert={ props.msgAlert } />
+		</div>
 	)
 }
 
