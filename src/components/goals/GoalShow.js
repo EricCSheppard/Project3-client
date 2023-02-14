@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
 
 
-
 const GoalShow = (props) => {
-    const [goal, setGoal] = useState({})
+    const [goal, setGoal] = useState(null)
     const { id } = useParams()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     // console.log(id)
     const [updated, setUpdated] = useState(false)
 
@@ -20,7 +19,6 @@ const GoalShow = (props) => {
         getOneGoal(id)
             .then(res => {
                 setGoal(res.data.goal)
-                console.log('data of res: ', goal)
             })
             .catch(err => {
                 console.log('ERROR in goal show')
@@ -32,28 +30,32 @@ const GoalShow = (props) => {
             })
     }, [])
 
-    // here's where our removeHome function will be called
-    // const setGoalFree = () => {
-    //     removeGoal(user, goal.id)
-    //         // upon success, send the
-    //         .then(() => {
-    //             msgAlert({
-    //                 heading: 'Success',
-    //                 message: messages.removeGoalSuccess,
-    //                 variant: 'success'
-    //             })
-    //         })
-    //         .then(() => {navigate('/')})
-    //         // upon failure, just send a message, no navigation required
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error',
-    //                 message: messages.removeGaolFailure,
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }
+    const deleteGoal = () => {
+        removeGoal(user, goal.id)
+            // upon success, send the appropriate message and redirect users
+            .then(() => {
+                msgAlert({
+                    heading: 'Success',
+                    message: "Goal successfully removed",
+                    variant: 'success'
+                })
+            })
+            .then(() => {navigate('/')})
+            // upon failure, just send a message, no navigation required
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'There has been an error, try again please',
+                    variant: 'danger'
+                })
+            })
+    }
 
+if(!goal){
+    return <p>loading....</p>
+}
+
+console.log('Goal after useEffect(): \n', goal)
     return (
 
         <Container className="m-2">
@@ -67,7 +69,22 @@ const GoalShow = (props) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <small>- {goal.owner.username}</small>
+                {
+                            goal.owner && user && goal.owner._id === user._id
+                            ?
+                            <>
+                                <Button 
+                                    className="m-2" variant="danger"
+                                    onClick={() => deleteGoal()}
+                                >
+                                    Remove Goal
+                                </Button>  <br />
+                            </>
+                            :
+                            null
+                        }
+                        
+                    <small>User: {goal.owner.username}</small>
                 </Card.Footer>
             </Card>
         </Container>

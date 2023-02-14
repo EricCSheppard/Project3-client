@@ -52,7 +52,7 @@ const GoalsIndex = (props) => {
         <Card.Body>
             <Card.Text>{goal.why}</Card.Text>
         </Card.Body>
-        <Card.Footer><small>Owner: { goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info">View Goal Info</Link></Card.Footer>
+        <Card.Footer><small>Owner: { goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link></Card.Footer>
         </Card>
         ))
         return (
