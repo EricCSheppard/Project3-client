@@ -28,7 +28,7 @@ const GoalForm = (props) => {
                         placeholder='What do you want to accomplish?'
                         name='what'
                         id='what'
-                        value={ goal.what }
+                        value={goal.what}
                         onChange={handleChange}
                     />
                 </Form.Group>
@@ -38,18 +38,18 @@ const GoalForm = (props) => {
                         placeholder='What is your motivation?'
                         name='why'
                         id='why'
-                        value={ goal.why }
+                        value={goal.why}
                         onChange={handleChange}
                     />
                 </Form.Group>
                 <Form.Group className='m-2'>
-                    <Form.Label>Deadline:</Form.Label>
+                    <Form.Label>By When (optional):</Form.Label>
                     <Form.Control
                         type='date'
                         placeholder='Set a deadline for your goal (optional)'
                         name='whenEnd'
                         id='whenEnd'
-                        value={ goal.whenEnd }
+                        value={goal.whenEnd}
                         onChange={handleChange}
                     />
                 </Form.Group>
@@ -57,13 +57,12 @@ const GoalForm = (props) => {
                     <Form.Check 
                         label='Would you like this goal to be viewable by other users?'
                         name='isPublic'
-                        defaultChecked={ goal.isPublic }
+                        defaultChecked={goal.isPublic}
                         onChange={handleChange}
                     />
                 </Form.Group>
                 <Button className='m-2' type='submit'>Submit</Button>
             </Form>
-
         </Container>
     )
 }
