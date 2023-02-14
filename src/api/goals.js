@@ -9,11 +9,52 @@ export const getAllGoals = () => {
 
 }
 
-// Read ->
+// Read -> Show
+export const getOneGoal = (id) => {
+    return axios(`${apiUrl}/goals/${id}`)
+}
 
 // Create ( Create a goal)
+export const CreateGoal = ( user, newGoal) => {
+    console.log('this is the user', user)
+    console.log('this is the  newGoal',newGoal)
+    return axios ({
+        url:`${apiUrl}/goals`,
+        method: 'POST',
+        headers: {
+             Authorization: `Token token =$(user.token)`
+        },
+             data: { goal:newGoal}
+        
+
+    })
+}
 
 //Update (Change a goal)
 
+export const updatedGoal = (user, updatedGoal) => {
+    return axios({
+        url: `${apiUrl}/goals/${updatedGoal.id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { goal: updatedGoal }
+    })
+}
+
+
 // Delete ( Remove a goal)
+
+export const removeGoal = (user ,goalId) => {
+    return axios ({
+        url: `${apiUrl}/goals/${goalId}`,
+        method: `DELETE`,
+        headers: {
+            Authorization:` Token token=${user.token}`
+
+        }
+
+    })
+}
 
