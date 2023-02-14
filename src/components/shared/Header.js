@@ -13,6 +13,11 @@ const authenticatedOptions = (
 				Change Password
 			</Link>
 		</Nav.Item>
+        <Nav.Item className="m-2">
+			<Link to='/goals/create' style={linkStyle}>
+                Create New Goal
+			</Link>
+		</Nav.Item>
 		<Nav.Item className="m-2">
 			<Link to='sign-out' style={linkStyle}>
 				Sign Out
@@ -39,6 +44,11 @@ const alwaysOptions = (
 				Home
 			</Link>
 		</Nav.Item>
+        <Nav.Item className="m-2">
+			<Link to='/goals' style={linkStyle}>
+				View All Goals
+			</Link>
+		</Nav.Item>
 	</>
 )
 
@@ -53,7 +63,7 @@ const Header = ({ user }) => (
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
 				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
+					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
