@@ -17,6 +17,7 @@ import GoalsIndex from '../goals/GoalsIndex'
 //function component
 const ShowUser = (props) => {
     //import props
+const [updated, setUpdated] = useState(false)
     const [profile, setProfile] = useState(null)
     const { id } = useParams()
     const { user, msgAlert } = props
@@ -33,7 +34,7 @@ const ShowUser = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [updated])
 
 
     // Index and filter profile's goals
@@ -45,11 +46,11 @@ const ShowUser = (props) => {
         <>
             <Container className="m-2">
                 <Card>
-                    <Card.Header>{profile.username}</Card.Header>
+                    <Card.Header></Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <div>
-                                Profile: {profile.username} Show Page
+                                Profile:Show Page
                             </div>
                         </Card.Text>
                     </Card.Body>

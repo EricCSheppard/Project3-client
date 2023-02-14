@@ -52,10 +52,10 @@ if (!users){
 //loop over the users
 const userCards = users.map(user=>(
     <Card key={ user.id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ user.email }</Card.Header>
+            <Card.Header>{ user.username }</Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <Link to={`/users/${user._id}`} className="btn btn-info">View { user.email } Profile</Link>
+                    <Link to={`/users/${user._id}`} className="btn btn-info">View { user.username } Profile</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
