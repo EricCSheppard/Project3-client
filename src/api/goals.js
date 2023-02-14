@@ -3,8 +3,8 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 
-//READ -> Indx
-export const getAllGoals = () => { 
+//READ -> Index
+export const getAllGoals = () => {
     return axios(`${apiUrl}/goals`)
 
 }
@@ -15,24 +15,23 @@ export const getOneGoal = (id) => {
 }
 
 // Create ( Create a goal)
-export const CreateGoal = ( user, newGoal) => {
+export const createGoal = (user, newGoal) => {
     console.log('this is the user', user)
-    console.log('this is the  newGoal',newGoal)
-    return axios ({
-        url:`${apiUrl}/goals`,
+    console.log('this is the newGoal', newGoal)
+    return axios({
+        url: `${apiUrl}/goals`,
         method: 'POST',
         headers: {
-             Authorization: `Token token =$(user.token)`
+            Authorization: `Token token=${user.token}`
         },
-             data: { goal:newGoal}
-        
+        data: { goal: newGoal }
+
 
     })
 }
 
 //Update (Change a goal)
-
-export const updatedGoal = (user, updatedGoal) => {
+export const updateGoal = (user, updatedGoal) => {
     return axios({
         url: `${apiUrl}/goals/${updatedGoal.id}`,
         method: 'PATCH',
@@ -45,16 +44,13 @@ export const updatedGoal = (user, updatedGoal) => {
 
 
 // Delete ( Remove a goal)
-
-export const removeGoal = (user ,goalId) => {
-    return axios ({
+export const removeGoal = (user, goalId) => {
+    return axios({
         url: `${apiUrl}/goals/${goalId}`,
         method: `DELETE`,
         headers: {
-            Authorization:` Token token=${user.token}`
-
+            Authorization: `Token token=${user.token}`
         }
-
     })
 }
 

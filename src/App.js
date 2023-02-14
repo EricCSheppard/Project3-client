@@ -14,6 +14,10 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GoalsIndex from './components/goals/GoalsIndex'
 import UsersIndex from './components/users/UsersIndex'
+import UserShow from './components/users/UserShow'
+import GoalShow from './components/goals/GoalShow'
+import GoalCreate from './components/goals/GoalCreate'
+
 
 const App = () => {
 
@@ -57,11 +61,23 @@ const App = () => {
 					path='/goals'
 					element={<GoalsIndex msgAlert={msgAlert} user={user} />}
 				/>
+				<Route
+					path='/goals/:id'
+					element={<GoalShow msgAlert={msgAlert} user={user} />}
+				/>
+				<Route
+					path='/goals/create'
+					element={<GoalCreate msgAlert={msgAlert} user={user} />}
+				/>
 
 				{/* PROFILES */}
 				<Route
 					path='/users'
 					element={<UsersIndex msgAlert={msgAlert} user={user} />}
+				/>
+				<Route
+					path='/users/:id'
+					element={<UserShow msgAlert={msgAlert} user={user} />}
 				/>
 
 				{/* AUTH */}

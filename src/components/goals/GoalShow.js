@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
+import { useParams } from 'react-router-dom'
+import { Container, Card, Button } from 'react-bootstrap'
 
 
 
 const GoalShow = (props) => {
-    const [goal, setGoal] = useState(null)
-
-
+    const [goal, setGoal] = useState({})
     const { id } = useParams()
     // const navigate = useNavigate()
+    // console.log(id)
+    const [updated, setUpdated] = useState(false)
 
     const { user, msgAlert } = props
     console.log('user in GoalShow props', user)
@@ -16,8 +18,12 @@ const GoalShow = (props) => {
 
     useEffect(() => {
         getOneGoal(id)
-            .then(res => setGoal(res.data.goal))
+            .then(res => {
+                setGoal(res.data.goal)
+                console.log('data of res: ', goal)
+            })
             .catch(err => {
+                console.log('ERROR in goal show')
                 msgAlert({
                     heading: 'Error getting goal',
                     message: 'something went wrong',
@@ -55,14 +61,13 @@ const GoalShow = (props) => {
                 <Card.Header>{goal.what}</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <div><small>why: {goal.why}</small></div>
+                        <div><small>{goal.why}</small></div>
 
 
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-
-
+                    <small>- {goal.owner.username}</small>
                 </Card.Footer>
             </Card>
         </Container>

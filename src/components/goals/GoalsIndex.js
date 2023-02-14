@@ -23,7 +23,6 @@ const GoalsIndex = (props) => {
     useEffect (() => {
         getAllGoals()
         .then(res =>setGoals (res.data.goals))
-        
         .catch(err => {
             msgAlert ({
                 heading:'Error getting goals',
@@ -48,10 +47,12 @@ const GoalsIndex = (props) => {
 
     // returning some jsx 
     const goalCards = goals.map (goal => (
-     <Card key={ goal.id}>
+     <Card key={ goal.id} className="m-2">
+        <Card.Header>{goal.what} - <small>{goal.id}</small></Card.Header>
         <Card.Body>
-            <Card.Text>{goal.what}</Card.Text>
+            <Card.Text>{goal.why}</Card.Text>
         </Card.Body>
+        <Card.Footer><small>Owner: { goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info">View Goal Info</Link></Card.Footer>
         </Card>
         ))
         return (
