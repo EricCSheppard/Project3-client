@@ -40,6 +40,7 @@ const ShowComment = (props) => {
         <>
             <Card className='mt-2'>
                 <Card.Header>{comment.owner.username} says:</Card.Header>
+
                 <Card.Body>
                     <Card.Text>
                     {comment.note}
