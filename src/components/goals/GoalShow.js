@@ -95,12 +95,15 @@ const GoalShow = (props) => {
                             { goal.daysLeft && goal.daysLeft >= 0 ? 
                             <>
                             <br/>
+                            { goal.daysLeft <= 7 ? 
+                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            :
                             <small>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            }
                             </>
                             :
                             null
                             }
-
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
