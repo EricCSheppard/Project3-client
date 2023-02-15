@@ -20,7 +20,7 @@ export const createComment = (user, goalId, newComment) => {
 // DELETE
 // /comment/:goalId/:commentId
 
-export const deleteComment = (user, goalId, commentId) => {
+export const removeComment = (user, goalId, commentId) => {
     return axios({    
         url: `${apiUrl}/comment/${goalId}/${commentId}`,
         method: 'DELETE',

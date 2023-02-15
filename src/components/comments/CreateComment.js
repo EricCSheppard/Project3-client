@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createComment } from '../../api/comments'
+import { createComment, removeComment } from '../../api/comments'
 // import { createGoalSuccess, createGoalFailure } from'../shared/AutoDismissAlert/messages'
 import CommentForm from '../shared/CommentForm'
 
