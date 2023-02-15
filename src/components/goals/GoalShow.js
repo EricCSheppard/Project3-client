@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
+import GoalEditModal from './GoalEditModal'
 
 
 const GoalShow = (props) => {
@@ -10,6 +11,7 @@ const GoalShow = (props) => {
     const navigate = useNavigate()
     // console.log(id)
     const [updated, setUpdated] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
 
     const { user, msgAlert } = props
     console.log('user in GoalShow props', user)
@@ -28,7 +30,7 @@ const GoalShow = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [updated])
 
     const deleteGoal = () => {
         removeGoal(user, goal.id)
@@ -55,41 +57,64 @@ if(!goal){
     return <p>loading....</p>
 }
 
-console.log('Goal after useEffect(): \n', goal)
+// console.log('Goal after useEffect(): \n', goal)
     return (
-
-        <Container className="m-2">
-            <Card>
-                <Card.Header>{goal.what}</Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <div><small>{goal.why}</small></div>
-
-
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                {
-                            goal.owner && user && goal.owner._id === user._id
-                            ?
+        <>
+            <Container className="m-2">
+                <Card>
+                    <Card.Header>{goal.what}</Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <div><small>{goal.why}</small></div>
+                            { goal.daysLeft ? 
                             <>
-                                <Button 
-                                    className="m-2" variant="danger"
-                                    onClick={() => deleteGoal()}
-                                >
-                                    Remove Goal
-                                </Button>  <br />
+                            <br/>
+                            <div><small>{goal.daysLeft} days left!</small></div>
                             </>
                             :
                             null
-                        }
-                        
-                    <small>User: {goal.owner.username}</small>
-                </Card.Footer>
-            </Card>
-        </Container>
+                            
+                            }
 
-
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                    {
+                                goal.owner && user && goal.owner._id === user._id
+                                ?
+                                <>
+                                    <Button 
+                                    className='m-2'
+                                    variant='warning'
+                                    onClick={() => setEditModalShow(true)}
+                                    >
+                                        Edit Goal
+                                    </Button>
+                                    <Button 
+                                        className="m-2" variant="danger"
+                                        onClick={() => deleteGoal()}
+                                    >
+                                        Remove Goal
+                                    </Button>  <br />
+                                </>
+                                :
+                                null
+                            }
+                            
+                        <small>User: {goal.owner.username}</small>
+                    </Card.Footer>
+                </Card>
+            </Container>
+            <GoalEditModal
+            user={user}
+            show={editModalShow}
+            handleClose={() => setEditModalShow(false)}
+            updateGoal={updateGoal}
+            msgAlert={msgAlert}
+            triggerRefresh={() => setUpdated(prev => !prev)}
+            goal={goal}
+            />
+        </>
     )
 }
 
