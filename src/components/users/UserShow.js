@@ -36,11 +36,24 @@ const [updated, setUpdated] = useState(false)
             })
     }, [updated])
 
+    if(!profile){
+        return <p>loading....</p>
+    }
 
-    // Index and filter profile's goals
+
+
+
+    // Index and filter profile's public goals
     let goalCards 
+    //if user === profile show also private goals
     // if there are display them
     //else tell to make more goals
+
+    //index of completed goal cards
+    let compCards
+
+    
+
 
     return (
         <>
@@ -50,7 +63,7 @@ const [updated, setUpdated] = useState(false)
                     <Card.Body>
                         <Card.Text>
                             <div>
-                                Profile:Show Page
+                                Profile: {profile.username} Show Page
                             </div>
                         </Card.Text>
                     </Card.Body>
