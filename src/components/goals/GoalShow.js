@@ -3,6 +3,7 @@ import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
 import GoalEditModal from './GoalEditModal'
+import ShowComment from '../comments/ShowComment'
 
 
 const GoalShow = (props) => {
@@ -52,10 +53,35 @@ const GoalShow = (props) => {
                 })
             })
     }
-
-if(!goal){
-    return <p>loading....</p>
+    const renderDaysLeft = () => {
+        if (goal.daysLeft > 1) {
+            return 'days'
+        } else if (goal.daysLeft === 1) {
+            return 'day'
+        } 
+    }
+    let commentCards
+    if (goal) {
+        if (goal.comments.length > 0) {
+            commentCards = goal.comments.map(comment => (
+                
+                <ShowComment
+                    key={comment.id}
+                    comment={comment}
+                    user={user}
+                    goal={goal}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+                
+            ))
+        }
+    }
+    console.log(commentCards)
+    if(!goal){
+        return <p>loading....</p>
 }
+// console.log(goal.comments)
 
 // console.log('Goal after useEffect(): \n', goal)
     return (
@@ -65,15 +91,14 @@ if(!goal){
                     <Card.Header>{goal.what}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>{goal.why}</small></div>
-                            { goal.daysLeft ? 
+                            <small>{goal.why}</small>
+                            { goal.daysLeft && goal.daysLeft >= 0 ? 
                             <>
                             <br/>
-                            <div><small>{goal.daysLeft} days left!</small></div>
+                            <small>{goal.daysLeft} {renderDaysLeft()} left!</small>
                             </>
                             :
                             null
-                            
                             }
 
                         </Card.Text>
@@ -104,6 +129,9 @@ if(!goal){
                         <small>User: {goal.owner.username}</small>
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container className='mt-4'>
+                {commentCards}
             </Container>
             <GoalEditModal
             user={user}
