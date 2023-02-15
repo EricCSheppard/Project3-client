@@ -3,23 +3,26 @@ import axios from 'axios'
 
 
 //CREATE
-// /comments/:goalId
-export const createComment = (goalId, newComment) => {
+// /comment/:goalId
+export const createComment = (user, goalId, newComment) => {
     return axios({    
-        url: `${apiUrl}/comments/${goalId}`,
+        url: `${apiUrl}/comment/${goalId}`,
         method: 'POST',
         data: {
-            Comment: newComment
+            comment: newComment
+        },
+        headers: {
+            Authorization: `Token token=${user.token}`
         }
     })
 }
 
 // DELETE
-// /toys/:goalId/:commentId
+// /comment/:goalId/:commentId
 
 export const deleteComment = (user, goalId, commentId) => {
     return axios({    
-        url: `${apiUrl}/comments/${goalId}/${commentId}`,
+        url: `${apiUrl}/comment/${goalId}/${commentId}`,
         method: 'DELETE',
         headers: {
             Authorization: `Token token=${user.token}`
