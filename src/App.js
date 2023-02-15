@@ -59,7 +59,11 @@ const App = () => {
 				{/* GOALS */}
 				<Route
 					path='/goals'
-					element={<GoalsIndex msgAlert={msgAlert} user={user} />}
+					element={<GoalsIndex 
+						msgAlert={msgAlert} 
+						user={user} 
+						profileId={null}
+						/>}
 				/>
 				<Route
 					path='/goals/:id'

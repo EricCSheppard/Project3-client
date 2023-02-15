@@ -59,12 +59,16 @@ const [updated, setUpdated] = useState(false)
         <>
             <Container className="m-2">
                 <Card>
-                    <Card.Header></Card.Header>
+                    <Card.Header>  <div>
+                                Profile: {profile.username} Show Page
+                            </div></Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div>
-                                Profile: {profile.username} Show Page
-                            </div>
+                          <GoalsIndex 
+                          user={user}
+                          msgAlert={msgAlert}
+                          profileId={profile._id}
+                          />
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
