@@ -1,5 +1,6 @@
 import { Card, Button } from 'react-bootstrap'
 import { useState } from 'react'
+import { removeComment } from '../../api/comments'
 
 const ShowComment = (props) => {
     const { comment, user, goal, msgAlert, triggerRefresh } = props
@@ -13,34 +14,52 @@ const ShowComment = (props) => {
     //     }
     // }
 
-    // const destroyBox = () => {
-    //     deleteBox(user, mic.id, box._id)
-    //         .then(() => {
-    //             msgAlert({
-    //                 heading: 'Box Deleted',
-    //                 message: 'Box removed',
-    //                 variant: 'success'
-    //             })
-    //         })
-    //         .then(() => triggerRefresh())
-    //         .catch(() => {
-    //             msgAlert({
-    //                 heading: 'Oh no.',
-    //                 message: 'Something went wrong, please try again.',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }
+    const deleteComment = () => {
+        removeComment(user, goal.id, comment._id)
+            // upon success, send the appropriate message and redirect users
+            .then(() => {
+                msgAlert({
+                    heading: 'Success',
+                    message: "Comment successfully removed",
+                    variant: 'success'
+                })
+            })
+            .then(() => triggerRefresh())
+            // upon failure, just send a message, no navigation required
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'There has been an error, try again please',
+                    variant: 'danger'
+                })
+            })
+    }
 
     console.log('the comment in ShowComment: ', comment)
     return (
         <>
-            <Card>
-                <Card.Header></Card.Header>
+            <Card className='mt-2'>
+                <Card.Header>{comment.owner.username} says:</Card.Header>
                 <Card.Body>
+                    <Card.Text>
                     {comment.note}
+                    </Card.Text>
                 </Card.Body>
                 <Card.Footer>
+                {
+                                comment.owner && user && comment.owner._id === user._id
+                                ?
+                                <>
+                                    <Button 
+                                        className="m-2" variant="danger"
+                                        onClick={() => deleteComment()}
+                                    >
+                                        X
+                                    </Button>  <br />
+                                </>
+                                :
+                                null
+                            }
                 </Card.Footer>
             </Card>
         </>
