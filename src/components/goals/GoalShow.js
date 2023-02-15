@@ -3,7 +3,7 @@ import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
 import GoalEditModal from './GoalEditModal'
-import ShowCommentTwo from '../comments/ShowCommentTwo'
+import ShowComment from '../comments/ShowComment'
 
 
 const GoalShow = (props) => {
@@ -65,7 +65,7 @@ const GoalShow = (props) => {
         if (goal.comments.length > 0) {
             commentCards = goal.comments.map(comment => (
                 
-                <ShowCommentTwo
+                <ShowComment
                     key={comment.id}
                     comment={comment}
                     user={user}
