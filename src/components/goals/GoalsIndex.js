@@ -9,6 +9,7 @@ import { getAllGoals } from "../../api/goals";
 // need our message from our autodissmissalert directory 
 
 import message from '../shared/AutoDismissAlert/messages'
+import UsersIndex from "../users/UsersIndex";
 
 //GoalsIndex will make a request to the Api for all the goals
 //
@@ -18,17 +19,31 @@ const GoalsIndex = (props) => {
     const [error, setError] = useState(false)
 
 
-    const { msgAlert, profileId } = props
-    // console.log('profileId prop: ',profileId)
+    const { msgAlert, profileId, user } = props
+    console.log('user prop: ',user)
+
+    const setBgCondition = (cond) => {
+        if (cond == 'Lifestyle') {
+            return({width: '24rem', backgroundColor: 'lightblue'})
+        } else if (cond == 'Finance') {
+            return({width: '24rem', backgroundColor: 'lightgreen'})
+        } else if (cond == 'Health-Fitness'){
+            return({width: '24rem', backgroundColor: 'pink'})
+        }
+    }
 
     useEffect(() => {
         getAllGoals()
             .then(res => {
+                let pubGoals = res.data.goals.filter(goal => goal.isPublic || (user && !goal.isPublic && goal.owner._id === user._id) )
+                // pubGoals.sort(function(x, y){
+                //     return y.createdAt - x.createdAt;
+                // })
                 if (profileId) {
-                    const filteredGoals = res.data.goals.filter(goal => goal.owner._id === profileId)
+                    const filteredGoals = pubGoals.filter(goal => goal.owner._id === profileId)
                     setGoals(filteredGoals)
                 } else {
-                    setGoals(res.data.goals)
+                    setGoals(pubGoals)
                 }
 
             })
@@ -55,8 +70,8 @@ const GoalsIndex = (props) => {
     }
 
     // returning some jsx 
-    const goalCards = goals.map(goal => (
-        <Card key={goal.id} className="m-2">
+    const goalCards = goals.splice(0).reverse().map(goal => (
+        <Card key={goal.id} className="m-2" style={setBgCondition(goal.type)}>
             <Card.Header>{goal.what} - <small>{goal.id}</small> {
             goal.isPublic 
             ?
@@ -69,7 +84,7 @@ const GoalsIndex = (props) => {
             
                 <Card.Text>{goal.why}</Card.Text>
             </Card.Body>
-            <Card.Footer><small>Owner: {goal.owner._id}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link></Card.Footer>
+            <Card.Footer><small>Owner: {goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link></Card.Footer>
         </Card>
     ))
 
