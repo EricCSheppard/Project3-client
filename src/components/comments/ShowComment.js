@@ -35,8 +35,10 @@ const ShowComment = (props) => {
     console.log('the comment in ShowComment: ', comment)
     return (
         <>
-            <Card>
-                <Card.Header></Card.Header>
+            <Card className="m-2">
+                <Card.Header>
+                    <small>{comment.owner.username}</small>
+                </Card.Header>
                 <Card.Body>
                     {comment.note}
                 </Card.Body>
