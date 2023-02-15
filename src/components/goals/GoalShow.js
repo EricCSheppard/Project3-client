@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
+import { createComment, deleteComment } from '../../api/comments'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
 import GoalEditModal from './GoalEditModal'
 import ShowComment from '../comments/ShowComment'
+import CreateComment from '../comments/CreateComment'
 
 
 const GoalShow = (props) => {
@@ -85,8 +87,9 @@ const GoalShow = (props) => {
 
 // console.log('Goal after useEffect(): \n', goal)
     return (
-        <>
-            <Container className="m-2">
+        <>  
+            
+            <Container className="m-5">
                 <Card>
                     <Card.Header>{goal.what}</Card.Header>
                     <Card.Body>
@@ -95,12 +98,15 @@ const GoalShow = (props) => {
                             { goal.daysLeft && goal.daysLeft >= 0 ? 
                             <>
                             <br/>
+                            { goal.daysLeft <= 7 ? 
+                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            :
                             <small>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            }
                             </>
                             :
                             null
                             }
-
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -131,7 +137,28 @@ const GoalShow = (props) => {
                 </Card>
             </Container>
             <Container className='mt-4'>
+                <p>Comments</p>
+
+                <hr/>
+                { user ?
+                <CreateComment
+                    goal={goal}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+                :
+                <small>Please log in to leave a comment</small>
+                }
+                <br/>
+                <br/>
+                { goal.comments.length > 0 ?
+                <>
                 {commentCards}
+                </>
+                :
+                <small>No comments yet</small>
+                }
             </Container>
             <GoalEditModal
             user={user}
