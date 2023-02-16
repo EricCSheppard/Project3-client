@@ -40,11 +40,11 @@ const GoalShow = (props) => {
 
     const setBgCondition = (cond) => {
         if (cond == 'Lifestyle') {
-            return({width: '24rem', backgroundColor: 'lightblue'})
+            return({width: '60%', backgroundColor: 'lightblue'})
         } else if (cond == 'Finance') {
-            return({width: '24rem', backgroundColor: 'lightgreen'})
+            return({width: '60%', backgroundColor: 'lightgreen'})
         } else if (cond == 'Health-Fitness'){
-            return({width: '24rem', backgroundColor: 'pink'})
+            return({width: '60%', backgroundColor: 'pink'})
         }
     }
 
@@ -133,13 +133,14 @@ const GoalShow = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
+                        <div className='row'>
                     {
                                 goal.owner && user && goal.owner._id === user._id
                                 ?
                                 <>
                                     { !goal.isComplete ?
                                     <Button 
-                                    className='m-2'
+                                    className='m-2 col-3'
                                     variant='warning'
                                     onClick={() => setEditModalShow(true)}
                                     >
@@ -149,7 +150,7 @@ const GoalShow = (props) => {
                                     null
                                     }
                                     <Button 
-                                        className="m-2" variant="danger"
+                                        className="m-2 col-3" variant="danger"
                                         onClick={() => deleteGoal()}
                                     >
                                         Remove Goal
@@ -169,13 +170,14 @@ const GoalShow = (props) => {
                                 null
                             }
                             
-                        <small>User: {goal.owner.username}</small>{
+                        {
             goal.isPublic 
             ?
             <></>
             :
             <span style={{color: "red"}}>PRIVATE</span>
         }
+        </div>
                     </Card.Footer>
                 </Card>
             </Container>

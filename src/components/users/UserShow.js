@@ -40,9 +40,6 @@ const [updated, setUpdated] = useState(false)
         return <p>loading....</p>
     }
 
-
-
-
     // Index and filter profile's public goals
     // let inProgressGoals = 
     //if user === profile show also private goals
@@ -55,13 +52,13 @@ const [updated, setUpdated] = useState(false)
     
     return (
         <>
-            <Container className='m-2 row'>
+            <Container className='container-md m-4 row'>
                 { user && user._id === profile._id ?
                 <h1>My goals:</h1>
                 :
                 <h1>{profile.username}'s goals:</h1>
                 }
-                <Card className='col-6'>
+                <Card className='col-5 m-2' style={{backgroundColor: 'lightgrey'}}>
                     <Card.Header> 
                             <div>
                                 Goals in Progress:
@@ -78,7 +75,7 @@ const [updated, setUpdated] = useState(false)
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card className='col-6'>
+                <Card className='col-5 m-2' style={{backgroundColor: 'lightyellow'}}>
                     <Card.Header> 
                             <div>
                                 Completed Goals:
