@@ -35,6 +35,17 @@ const GoalShow = (props) => {
             })
     }, [updated])
 
+
+    const setBgCondition = (cond) => {
+        if (cond == 'Lifestyle') {
+            return({width: '24rem', backgroundColor: 'lightblue'})
+        } else if (cond == 'Finance') {
+            return({width: '24rem', backgroundColor: 'lightgreen'})
+        } else if (cond == 'Health-Fitness'){
+            return({width: '24rem', backgroundColor: 'pink'})
+        }
+    }
+
     const deleteGoal = () => {
         removeGoal(user, goal.id)
             // upon success, send the appropriate message and redirect users
@@ -66,7 +77,7 @@ const GoalShow = (props) => {
     let commentCards
     if (goal) {
         if (goal.comments.length > 0) {
-            commentCards = goal.comments.map(comment => (
+            commentCards = goal.comments.reverse().map(comment => (
                 
                 <ShowComment
                     key={comment.id}
@@ -86,12 +97,12 @@ const GoalShow = (props) => {
 }
 // console.log(goal.comments)
 
-// console.log('Goal after useEffect(): \n', goal)
+
     return (
         <>  
             
             <Container className="m-5">
-                <Card>
+                <Card style={setBgCondition(goal.type)}>
                     <Card.Header>{goal.what}</Card.Header>
                     <Card.Body>
                         <Card.Text>
@@ -133,7 +144,13 @@ const GoalShow = (props) => {
                                 null
                             }
                             
-                        <small>User: {goal.owner.username}</small>
+                        <small>User: {goal.owner.username}</small>{
+            goal.isPublic 
+            ?
+            <></>
+            :
+            <span style={{color: "red"}}>PRIVATE</span>
+        }
                     </Card.Footer>
                 </Card>
             </Container>
