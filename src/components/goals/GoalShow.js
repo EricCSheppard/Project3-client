@@ -6,6 +6,7 @@ import { Container, Card, Button } from 'react-bootstrap'
 import GoalEditModal from './GoalEditModal'
 import ShowComment from '../comments/ShowComment'
 import CreateComment from '../comments/CreateComment'
+import DaysLeftBar from '../shared/ProgressBar'
 
 
 const GoalShow = (props) => {
@@ -94,6 +95,8 @@ const GoalShow = (props) => {
     console.log(commentCards)
     if(!goal){
         return <p>loading....</p>
+
+    
 }
 // console.log(goal.comments)
 
@@ -106,14 +109,16 @@ const GoalShow = (props) => {
                     <Card.Header>{goal.what}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <small>{goal.why}</small>
+                            <h4>{goal.why}</h4>
                             { goal.daysLeft && goal.daysLeft >= 0 ? 
                             <>
-                            <br/>
-                            { goal.daysLeft <= 7 ? 
-                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            <DaysLeftBar
+                            goal={goal}
+                            />
+                            { goal.percentRemain <= 20 ? 
+                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} out of {goal.daysTotal} total remain!!</small>
                             :
-                            <small>{goal.daysLeft} {renderDaysLeft()} left!</small>
+                            <small>{goal.daysLeft} {renderDaysLeft()} out of {goal.daysTotal} total remain!</small>
                             }
                             </>
                             :
