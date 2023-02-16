@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 //api function from our api file 
 import { getAllGoals } from "../../api/goals";
+import GoalCopy from "./GoalCopy";
 
 
 // need our message from our autodissmissalert directory 
@@ -20,7 +21,7 @@ const GoalsIndex = (props) => {
 
 
     const { msgAlert, profileId, user } = props
-    console.log('user prop: ',user)
+    // console.log('user prop: ',user)
 
     const setBgCondition = (cond) => {
         if (cond == 'Lifestyle') {
@@ -84,7 +85,17 @@ const GoalsIndex = (props) => {
             
                 <Card.Text>{goal.why}</Card.Text>
             </Card.Body>
-            <Card.Footer><small>Owner: {goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link></Card.Footer>
+            <Card.Footer><small>Owner: {goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link>
+            { user && goal.owner._id !== user._id ?
+            <GoalCopy
+                user={user}
+                msgAlert={msgAlert}
+                goal={goal}
+                />
+            :
+            null
+            }
+            </Card.Footer>
         </Card>
     ))
 

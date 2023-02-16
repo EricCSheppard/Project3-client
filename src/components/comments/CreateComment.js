@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { createComment, removeComment } from '../../api/comments'
+import { createComment } from '../../api/comments'
 // import { createGoalSuccess, createGoalFailure } from'../shared/AutoDismissAlert/messages'
 import CommentForm from '../shared/CommentForm'
 
 // bring in the useNavigate hook from react-router-dom
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 
 const CreateComment = (props) => {
@@ -12,10 +12,6 @@ const CreateComment = (props) => {
     const { user, goal, msgAlert, triggerRefresh } = props
 
     const goalId = goal.id
-
-    // set up( pull our navigate function from useNavigate)
-    const navigate = useNavigate()
-    // console.log('this is navigate', navigate)
 
     const [comment, setComment] = useState({
         note: ''
@@ -45,7 +41,7 @@ const CreateComment = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log('this is the comment', comment)
+        // console.log('this is the comment', comment)
         createComment(user, goalId, comment)
             // first we'll nav to the show page
             .then(() => triggerRefresh())

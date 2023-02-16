@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 const GoalCreate = (props) => {
 
-    const { user, msgAlert } = props
+    const { user, msgAlert, } = props
 
     // set up( pull our navigate function from useNavigate)
     const navigate = useNavigate()
@@ -62,7 +62,7 @@ const GoalCreate = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: 'Goal logged, get working!',
+                    message: "Goal logged, let's do this!",
                     variant: 'success'
                 })
             })
