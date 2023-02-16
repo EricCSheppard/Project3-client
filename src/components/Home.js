@@ -6,7 +6,7 @@ const Home = (props) => {
 	return (
 
 		<div className="container-md">
-			<h2>Project W3 - Home Page</h2>
+			<h2>Project 3W Users:</h2>
 			<UsersIndex msgAlert={ props.msgAlert } />
 		</div>
 	)
