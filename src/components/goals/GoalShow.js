@@ -7,6 +7,7 @@ import GoalEditModal from './GoalEditModal'
 import ShowComment from '../comments/ShowComment'
 import CreateComment from '../comments/CreateComment'
 import DaysLeftBar from '../shared/ProgressBar'
+import GoalMarkComplete from './GoalMarkComplete'
 
 
 const GoalShow = (props) => {
@@ -57,7 +58,7 @@ const GoalShow = (props) => {
                     variant: 'success'
                 })
             })
-            .then(() => {navigate('/')})
+            .then(() => {navigate(`/users/${user._id}`)})
             // upon failure, just send a message, no navigation required
             .catch(err => {
                 msgAlert({
@@ -92,7 +93,7 @@ const GoalShow = (props) => {
             ))
         }
     }
-    console.log(commentCards)
+    // console.log(commentCards)
     if(!goal){
         return <p>loading....</p>
 
@@ -110,17 +111,22 @@ const GoalShow = (props) => {
                     <Card.Body>
                         <Card.Text>
                             <h4>{goal.why}</h4>
-                            { goal.daysLeft && goal.daysLeft >= 0 ? 
+                            { goal.daysLeft && goal.daysLeft >= 0 && !goal.isComplete ? 
                             <>
                             <DaysLeftBar
                             goal={goal}
                             />
                             { goal.percentRemain <= 20 ? 
-                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} out of {goal.daysTotal} total remain!!</small>
+                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} left out of {goal.daysTotal} total</small>
                             :
-                            <small>{goal.daysLeft} {renderDaysLeft()} out of {goal.daysTotal} total remain!</small>
+                            <small>{goal.daysLeft} {renderDaysLeft()} left out of {goal.daysTotal} total</small>
                             }
                             </>
+                            :
+                            null
+                            }
+                            { goal.isComplete ?
+                            <small style={{color: 'green'}}>Goal was finished in {goal.finishedDays} days!</small>
                             :
                             null
                             }
@@ -131,6 +137,7 @@ const GoalShow = (props) => {
                                 goal.owner && user && goal.owner._id === user._id
                                 ?
                                 <>
+                                    { !goal.isComplete ?
                                     <Button 
                                     className='m-2'
                                     variant='warning'
@@ -138,12 +145,25 @@ const GoalShow = (props) => {
                                     >
                                         Edit Goal
                                     </Button>
+                                    :
+                                    null
+                                    }
                                     <Button 
                                         className="m-2" variant="danger"
                                         onClick={() => deleteGoal()}
                                     >
                                         Remove Goal
-                                    </Button>  <br />
+                                    </Button>
+                                    { !goal.isComplete ?
+                                    <GoalMarkComplete
+                                        goal={goal}
+                                        user={user}
+                                        msgAlert={msgAlert}
+                                    />
+                                    :
+                                    null
+                                    }
+                                    <br/>
                                 </>
                                 :
                                 null

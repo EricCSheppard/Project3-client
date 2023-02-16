@@ -52,7 +52,7 @@ const ShowComment = (props) => {
                                 ?
                                 <>
                                     <Button 
-                                        className="m-2" variant="danger"
+                                        className='m-2' variant='danger'
                                         onClick={() => deleteComment()}
                                     >
                                         X
