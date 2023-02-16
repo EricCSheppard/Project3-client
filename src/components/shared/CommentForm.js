@@ -2,7 +2,7 @@ import { Form, Button, Container } from 'react-bootstrap'
 
 const CommentForm = (props) => {
     
-    const { comment, handleChange, handleSubmit, heading } = props
+    const { comment, handleChange, handleSubmit } = props
 
     return (
         <Container className='justify-content-center'>
