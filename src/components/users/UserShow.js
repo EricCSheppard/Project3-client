@@ -34,7 +34,7 @@ const [updated, setUpdated] = useState(false)
                     variant: 'danger'
                 })
             })
-    }, [updated])
+    }, [updated, msgAlert])
 
     if(!profile){
         return <p>loading....</p>
@@ -44,36 +44,56 @@ const [updated, setUpdated] = useState(false)
 
 
     // Index and filter profile's public goals
-    let goalCards 
+    // let inProgressGoals = 
     //if user === profile show also private goals
     // if there are display them
     //else tell to make more goals
 
     //index of completed goal cards
-    let compCards
+    // let completedGoals = 
 
     
-
-
     return (
         <>
-            <Container className="m-2">
-                <Card>
-                    <Card.Header>  <div>
-                                Profile: {profile.username} Show Page
-                            </div></Card.Header>
+            <Container className='m-2 row'>
+                { user && user._id === profile._id ?
+                <h1>My goals:</h1>
+                :
+                <h1>{profile.username}'s goals:</h1>
+                }
+                <Card className='col-6'>
+                    <Card.Header> 
+                            <div>
+                                Goals in Progress:
+                            </div>
+                    </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                          <GoalsIndex 
-                          user={user}
-                          msgAlert={msgAlert}
-                          profileId={profile._id}
-                          />
+                            <GoalsIndex 
+                            user={user}
+                            msgAlert={msgAlert}
+                            profileId={profile._id}
+                            isCompleted={false}
+                            />
                         </Card.Text>
                     </Card.Body>
-                    <Card.Footer>
-
-                    </Card.Footer>
+                </Card>
+                <Card className='col-6'>
+                    <Card.Header> 
+                            <div>
+                                Completed Goals:
+                            </div>
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <GoalsIndex 
+                            user={user}
+                            msgAlert={msgAlert}
+                            profileId={profile._id}
+                            isCompleted={true}
+                            />
+                        </Card.Text>
+                    </Card.Body>
                 </Card>
             </Container>
             

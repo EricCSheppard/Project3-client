@@ -20,7 +20,7 @@ const GoalsIndex = (props) => {
     const [error, setError] = useState(false)
 
 
-    const { msgAlert, profileId, user } = props
+    const { msgAlert, profileId, user, isCompleted } = props
     // console.log('user prop: ',user)
 
     const setBgCondition = (cond) => {
@@ -37,16 +37,29 @@ const GoalsIndex = (props) => {
         getAllGoals()
             .then(res => {
                 let pubGoals = res.data.goals.filter(goal => goal.isPublic || (user && !goal.isPublic && goal.owner._id === user._id) )
-                // pubGoals.sort(function(x, y){
-                //     return y.createdAt - x.createdAt;
-                // })
-                if (profileId) {
-                    const filteredGoals = pubGoals.filter(goal => goal.owner._id === profileId)
-                    setGoals(filteredGoals)
+                // if (profileId) {
+                //     const filteredGoals = pubGoals.filter(goal => goal.owner._id === profileId)
+                //     setGoals(filteredGoals)
+                // } else {
+                //     setGoals(pubGoals)
+                // }
+                if (isCompleted) {
+                    const completedGoals = pubGoals.filter(goal => goal.isComplete)
+                    if (profileId) {
+                        const filteredGoals = completedGoals.filter(goal => goal.owner._id === profileId)
+                        setGoals(filteredGoals)
+                    } else {
+                        setGoals(completedGoals)
+                    }
                 } else {
-                    setGoals(pubGoals)
+                    const incompleteGoals = pubGoals.filter(goal => !goal.isComplete)
+                    if (profileId) {
+                        const filteredGoals = incompleteGoals.filter(goal => goal.owner._id === profileId)
+                        setGoals(filteredGoals)
+                    } else {
+                        setGoals(incompleteGoals)
+                    }
                 }
-
             })
             .catch(err => {
                 msgAlert({
@@ -67,7 +80,11 @@ const GoalsIndex = (props) => {
     if (!goals) {
         return <p> Please Wait </p>
     } else if (goals.length === 0) {
-        return <p> No Goals Yet Add One</p>
+        if (isCompleted) {
+        return <p> Keep working! </p>
+        } else {
+            return <p>No Goals yet, go add some!</p>
+        }
     }
 
     // returning some jsx 
