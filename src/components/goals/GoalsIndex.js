@@ -66,7 +66,7 @@ const GoalsIndex = (props) => {
                 })
                 setError(true)
             })
-    }, []
+    }, [msgAlert]
     )
 
     const handleChange = (e) => {
@@ -76,7 +76,8 @@ const GoalsIndex = (props) => {
             return goal.what.toLowerCase().includes(searchInput.toLowerCase())
         })
         // setGoals(searchedGoalsList)
-    };
+    }
+    
 
     console.log('searchInput: ', searchInput)
     console.log('goals: ', { goals })
@@ -97,7 +98,14 @@ const GoalsIndex = (props) => {
     // returning some jsx 
     const goalCards = goals.splice(0).reverse().map(goal => (
         <Card key={goal.id} className="m-2" style={setBgCondition(goal.type)}>
-            <Card.Header>{goal.what} - <small>{goal.id}</small> {
+            <Card.Header>
+                
+                    { goal.owner && user && goal.owner._id === user._id ?
+                    <p>I want to: {goal.what}</p>
+                    :
+                    <p>{goal.owner.username} wants to: {goal.what}</p>
+                    }
+                {
                 goal.isPublic
                     ?
                     <></>
@@ -109,16 +117,19 @@ const GoalsIndex = (props) => {
 
                 <Card.Text>{goal.why}</Card.Text>
             </Card.Body>
-            <Card.Footer><small>Owner: {goal.owner.username}</small><Link to={`/goals/${goal._id}`} className="btn btn-info m-2">View Goal Info</Link>
-                {user && goal.owner._id !== user._id ?
-                    <GoalCopy
-                        user={user}
-                        msgAlert={msgAlert}
-                        goal={goal}
-                    />
-                    :
-                    null
-                }
+            <Card.Footer>
+                <div className='row'>
+                    <Link to={`/goals/${goal._id}`} className="btn btn-info m-2 col-6">View Details</Link>
+                    {user && goal.owner._id !== user._id ?
+                        <GoalCopy
+                            user={user}
+                            msgAlert={msgAlert}
+                            goal={goal}
+                        />
+                        :
+                        null
+                    }
+                </div>
             </Card.Footer>
         </Card>
     ))
