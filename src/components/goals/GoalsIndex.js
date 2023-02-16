@@ -57,7 +57,7 @@ const GoalsIndex = (props) => {
             })
 
 
-    }, []
+    }, [msgAlert]
     )
 
     if (error) {
