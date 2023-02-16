@@ -1,36 +1,31 @@
-import { createGoal } from '../../api/goals'
+import { markGoalComplete } from '../../api/goals'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
-const GoalCopy = (props) => {
+const GoalMarkComplete = (props) => {
 
-    const { user, msgAlert, goal } = props
+    const { goal, user, msgAlert } = props
 
     // set up( pull our navigate function from useNavigate)
     const navigate = useNavigate()
     // console.log('this is navigate', navigate)
-
-    const newGoal = {
-        what: goal.what,
-        type: goal.type,
-        whenEnd: goal.whenEnd,
-        why: goal.why,
-        isComplete: false,
-        completedDate: null,
-        isPublic: goal.isPublic
+    const goalId = goal.id
+    const completeGoal = {
+        isComplete: true,
+        completedDate: Date.now()
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
         // console.log('this is the goal', goal)
-        createGoal(user, newGoal)
+        markGoalComplete(user, completeGoal, goalId)
             // first we'll nav to the show page
-            .then(res => { navigate(`/goals/${res.data.goal.id}`)})
+            .then(res => { navigate(`/users/${user._id}`)})
             // we'll also send a success message
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: "Goal logged, let's do this!",
+                    message: "CONGRATS, I'M SO PROUD OF YOU!",
                     variant: 'success'
                 })
             })
@@ -47,11 +42,11 @@ const GoalCopy = (props) => {
     return (
         <>
         <Form onSubmit={onSubmit}>
-            <Button className='m-2' type='submit'>Copy</Button>
+            <Button className='m-2' variant='success' type='submit'>COMPLETED!</Button>
         </Form>
         </>
     )
 
 }
 
-export default GoalCopy
+export default GoalMarkComplete

@@ -42,6 +42,18 @@ export const updateGoal = (user, updatedGoal) => {
     })
 }
 
+//Update (Mark complete)
+export const markGoalComplete = (user, updatedGoal, goalId) => {
+    return axios({
+        url: `${apiUrl}/goals/${goalId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { goal: updatedGoal }
+    })
+}
+
 
 // Delete ( Remove a goal)
 export const removeGoal = (user, goalId) => {
