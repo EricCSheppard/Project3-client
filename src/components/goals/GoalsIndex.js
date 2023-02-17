@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Card from 'react-bootstrap/Card'
+import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import SearchBar from "../shared/SearchBar";
 
@@ -24,11 +24,11 @@ const GoalsIndex = (props) => {
 
     const setBgCondition = (cond) => {
         if (cond == 'Lifestyle') {
-            return ({ width: '24rem', backgroundColor: 'lightblue' })
+            return ({ backgroundColor: 'lightblue' })
         } else if (cond == 'Finance') {
-            return ({ width: '24rem', backgroundColor: 'lightgreen' })
+            return ({ backgroundColor: 'lightgreen' })
         } else if (cond == 'Health-Fitness') {
-            return ({ width: '24rem', backgroundColor: 'pink' })
+            return ({ backgroundColor: 'pink' })
         }
     }
 
@@ -99,40 +99,42 @@ const GoalsIndex = (props) => {
 
     // returning some jsx 
     const goalCards = goals.map(goal => (
-        <Card key={goal.id} className="m-2" style={setBgCondition(goal.type)}>
-            <Card.Header>
-                
+        <Card key={goal.id} className="m-2" style={{ width: '90%' }}>
+            <Card.Header style={setBgCondition(goal.type)}>
+                <Card.Title>
                     { goal.owner && user && goal.owner._id === user._id ?
                     <p>I want to: {goal.what}</p>
                     :
                     <p>{goal.owner.username} wants to: {goal.what}</p>
                     }
-                {
-                goal.isPublic
-                    ?
-                    <></>
-                    :
-                    <span style={{ color: "red" }}>PRIVATE</span>
-            }
+                    {
+            goal.isPublic 
+            ?
+            <></>
+            :
+            <img className='ms-1' src='/private.png' alt='private icon' width='24' height='24'></img>
+                    }
+                </Card.Title>
             </Card.Header>
             <Card.Body>
 
                 <Card.Text>{goal.why}</Card.Text>
             </Card.Body>
-            <Card.Footer>
-                <div className='row'>
-                    <Link to={`/goals/${goal._id}`} className="btn btn-info m-2 col-6">View Details</Link>
-                    {user && goal.owner._id !== user._id ?
-                        <GoalCopy
-                            user={user}
-                            msgAlert={msgAlert}
-                            goal={goal}
-                        />
-                        :
-                        null
-                    }
-                </div>
-            </Card.Footer>
+                <Card.Footer>
+                    <div className='row'>
+                        <Link size='sm' to={`/goals/${goal._id}`} className="m-2 col-3 btn btn-info">Details
+                        </Link>
+                        {user && goal.owner._id !== user._id ?
+                            <GoalCopy
+                                user={user}
+                                msgAlert={msgAlert}
+                                goal={goal}
+                            />
+                            :
+                            null
+                        }
+                    </div>
+                </Card.Footer>
         </Card>
     ))
 

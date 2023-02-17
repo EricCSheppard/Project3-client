@@ -39,20 +39,15 @@ const ShowComment = (props) => {
     return (
         <>
             <Card className='mt-2'>
-                <Card.Header>{comment.owner.username} says:</Card.Header>
-
-                <Card.Body>
-                    <Card.Text>
-                    {comment.note}
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
+                <Card.Header>{comment.owner.username} says:
                 {
                                 comment.owner && user && comment.owner._id === user._id
                                 ?
                                 <>
                                     <Button 
-                                        className='m-2' variant='danger'
+                                        size='sm' 
+                                        className='ms-5' 
+                                        variant='danger'
                                         onClick={() => deleteComment()}
                                     >
                                         X
@@ -61,6 +56,15 @@ const ShowComment = (props) => {
                                 :
                                 null
                             }
+                </Card.Header>
+
+                <Card.Body>
+                    <Card.Text>
+                    {comment.note}
+                    </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                
                 </Card.Footer>
             </Card>
         </>

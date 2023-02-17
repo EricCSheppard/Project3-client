@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getOneGoal, removeGoal, updateGoal } from '../../api/goals'
 import { createComment, removeComment } from '../../api/comments'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
 import GoalEditModal from './GoalEditModal'
 import ShowComment from '../comments/ShowComment'
@@ -40,11 +40,11 @@ const GoalShow = (props) => {
 
     const setBgCondition = (cond) => {
         if (cond == 'Lifestyle') {
-            return({width: '60%', backgroundColor: 'lightblue'})
+            return({backgroundColor: 'lightblue'})
         } else if (cond == 'Finance') {
-            return({width: '60%', backgroundColor: 'lightgreen'})
+            return({backgroundColor: 'lightgreen'})
         } else if (cond == 'Health-Fitness'){
-            return({width: '60%', backgroundColor: 'pink'})
+            return({backgroundColor: 'pink'})
         }
     }
 
@@ -73,6 +73,14 @@ const GoalShow = (props) => {
         if (goal.daysLeft > 1) {
             return 'days'
         } else if (goal.daysLeft === 1) {
+            return 'day'
+        } 
+    }
+
+    const renderFinishedDays = () => {
+        if (goal.finishedDays > 1) {
+            return 'days'
+        } else if (goal.finishedDays === 1) {
             return 'day'
         } 
     }
@@ -106,8 +114,15 @@ const GoalShow = (props) => {
         <>  
             
             <Container className="m-5">
-                <Card style={setBgCondition(goal.type)}>
-                    <Card.Header>{goal.what}</Card.Header>
+                <Card style={{ width: '80%'}}>
+                    <Card.Header style={setBgCondition(goal.type)}>{goal.what}
+                    {
+            goal.isPublic 
+            ?
+            <></>
+            :
+            <img className='ms-5' src='/private.png' alt='private icon' width='24' height='24'></img>
+        }</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <h4>{goal.why}</h4>
@@ -126,13 +141,13 @@ const GoalShow = (props) => {
                             null
                             }
                             { goal.isComplete ?
-                            <small style={{color: 'green'}}>Goal was finished in {goal.finishedDays} days!</small>
+                            <small style={{color: 'darkgreen'}}>Goal was finished in {goal.finishedDays} {renderFinishedDays()}!</small>
                             :
                             null
                             }
                         </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
+                    
+                    
                         <div className='row'>
                     {
                                 goal.owner && user && goal.owner._id === user._id
@@ -140,8 +155,9 @@ const GoalShow = (props) => {
                                 <>
                                     { !goal.isComplete ?
                                     <Button 
+                                    size='sm'
                                     className='m-2 col-3'
-                                    variant='warning'
+                                    variant='info'
                                     onClick={() => setEditModalShow(true)}
                                     >
                                         Edit Goal
@@ -170,18 +186,12 @@ const GoalShow = (props) => {
                                 null
                             }
                             
-                        {
-            goal.isPublic 
-            ?
-            <></>
-            :
-            <span style={{color: "red"}}>PRIVATE</span>
-        }
-        </div>
-                    </Card.Footer>
+                        
+                            </div>
+                    </Card.Body>
                 </Card>
             </Container>
-            <Container className='mt-4'>
+            <Container className='mt-4' style={{width: '60%'}}>
                 <p>Comments</p>
 
                 <hr/>
