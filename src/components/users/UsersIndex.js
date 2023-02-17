@@ -63,8 +63,11 @@ const userCards = users.map(user=>(
 //aah
  // return some jsx, a container with all the user cards
  return (
-    <div className="container-md" style={ cardContainerStyle }>
-        { userCards }
+    <div className='container-md'>
+        <h3>User Index:</h3>
+        <div className="container-md" style={ cardContainerStyle }>
+            { userCards }
+        </div>
     </div>
 )
 }
