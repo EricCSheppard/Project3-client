@@ -69,21 +69,15 @@ const GoalShow = (props) => {
             })
     }
 
-    const renderDaysLeft = () => {
-        if (goal.daysLeft > 1) {
-            return 'days'
-        } else if (goal.daysLeft === 1) {
+    const renderDays = (days) => {
+        if (days === 1) {
             return 'day'
+        } else {
+            return 'days'
         } 
     }
 
-    const renderFinishedDays = () => {
-        if (goal.finishedDays > 1) {
-            return 'days'
-        } else if (goal.finishedDays === 1) {
-            return 'day'
-        } 
-    }
+
     let commentCards
     if (goal) {
         if (goal.comments.length > 0) {
@@ -132,16 +126,16 @@ const GoalShow = (props) => {
                             goal={goal}
                             />
                             { goal.percentRemain <= 20 ? 
-                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDaysLeft()} left out of {goal.daysTotal} total</small>
+                            <small style={{color: 'red'}}>{goal.daysLeft} {renderDays(goal.daysLeft)} left out of {goal.daysTotal} total</small>
                             :
-                            <small>{goal.daysLeft} {renderDaysLeft()} left out of {goal.daysTotal} total</small>
+                            <small>{goal.daysLeft} {renderDays(goal.daysLeft)} left out of {goal.daysTotal} total</small>
                             }
                             </>
                             :
                             null
                             }
                             { goal.isComplete ?
-                            <small style={{color: 'darkgreen'}}>Goal was finished in {goal.finishedDays} {renderFinishedDays()}!</small>
+                            <small style={{color: 'darkgreen'}}>Goal was finished in {goal.finishedDays} {renderDays(goal.finishedDays)}!</small>
                             :
                             null
                             }
