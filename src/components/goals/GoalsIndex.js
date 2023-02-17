@@ -122,7 +122,7 @@ const GoalsIndex = (props) => {
             </Card.Body>
                 <Card.Footer>
                     <div className='row'>
-                        <Link size='sm' to={`/goals/${goal._id}`} className="m-2 col-3 btn btn-info">Details
+                        <Link size='sm' to={`/goals/${goal._id}`} className="m-2 col-3 btn btn-info"style={{width: '60%'}}>Details
                         </Link>
                         {user && goal.owner._id !== user._id ?
                             <GoalCopy
