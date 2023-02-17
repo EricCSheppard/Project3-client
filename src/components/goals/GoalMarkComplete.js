@@ -42,7 +42,7 @@ const GoalMarkComplete = (props) => {
     return (
         <>
         <Form className='col-3' onSubmit={onSubmit}>
-            <Button className='m-2' variant='success' type='submit'>COMPLETED!</Button>
+            <Button className='mt-2' variant='success' type='submit'>✓</Button>
         </Form>
         </>
     )

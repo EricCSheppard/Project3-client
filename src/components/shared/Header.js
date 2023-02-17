@@ -54,16 +54,14 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
 	<Navbar bg='dark' variant='dark' expand='md'>
-		<Navbar.Brand className="m-0 p-2">
-            <Link to='/' style={linkStyle}>
+		<Navbar.Brand className="me-4 p-2">
                 3W
-            </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
 				{user && (
-					<Link to={`/users/${user._id}`} className='navbar-text mr-2' textDecoration='none'>My goals</Link>
+					<Link to={`/users/${user._id}`} className='navbar-text me-2' style={linkStyle}>My goals</Link>
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
