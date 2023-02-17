@@ -57,6 +57,7 @@ const GoalsIndex = (props) => {
                         setGoals(incompleteGoals)
                     }
                 }
+                // setGoals(res.data.goals)
             })
             .catch(err => {
                 msgAlert({
@@ -66,17 +67,18 @@ const GoalsIndex = (props) => {
                 })
                 setError(true)
             })
-    }, [msgAlert]
+    }, []
     )
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        setSearchInput(e.target.value);
-        const searchedGoalsList = goals.filter(goal => {
-            return goal.what.toLowerCase().includes(searchInput.toLowerCase())
-        })
-        // setGoals(searchedGoalsList)
-    }
+    // const handleChange = (e) => {
+    //     e.preventDefault();
+    //     setSearchInput(e.target.value);
+    //     const searchedGoalsList = goals.filter(goal => {
+    //         return goal.what.toLowerCase().includes(searchInput.toLowerCase())
+    //     })
+        
+    //     setGoals(searchedGoalsList)
+    // }
     
 
     console.log('searchInput: ', searchInput)
@@ -96,7 +98,7 @@ const GoalsIndex = (props) => {
     }
 
     // returning some jsx 
-    const goalCards = goals.splice(0).reverse().map(goal => (
+    const goalCards = goals.map(goal => (
         <Card key={goal.id} className="m-2" style={setBgCondition(goal.type)}>
             <Card.Header>
                 
@@ -144,7 +146,7 @@ const GoalsIndex = (props) => {
                     value={searchInput}
                 />
             } */}
-            {goalCards}
+            {goalCards.splice(0).reverse()}
         </div>
     )
 }
