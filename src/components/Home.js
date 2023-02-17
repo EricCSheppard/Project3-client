@@ -23,7 +23,7 @@ const Home = (props) => {
                 user ?
                 <>
                 <Link className='btn btn-info m-2' to={`users/${user._id}`}>Go to my goals</Link>
-                <Link className='btn btn-info m-2' to={'goals/'}>Create a new goal</Link>
+                <Link className='btn btn-info m-2' to={'goals/create'}>Create a new goal</Link>
                 <Link className='btn btn-info m-2' to={'users/'}>See other user's goals</Link>
                 </>
             :
