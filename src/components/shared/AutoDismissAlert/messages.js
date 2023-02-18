@@ -12,6 +12,7 @@ const messages = {
 	noAuth: 'Something went wrong, pls try again!',
 	notFoundGoals: 'could not find any goals',
 	cmntCreateEr: 'Something went wrong, we will be back soon',
+	goalCompleted: "CONGRATS, I'M SO PROUD OF YOU!",
 
 
 

@@ -10,7 +10,10 @@ const Home = (props) => {
 
 	return (
 
-		<div className="mt-3 container-md" style={{textAlign: 'left'}}>
+		<div className="mt-3 container-md" style={{textAlign: 'left', background: 'linear-gradient(to bottom, #b0e0e6, #f0fff0)', minHeight: '100vh'}}>
+
+
+
             <Helmet>
                 <title>Project 3W</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -39,11 +42,11 @@ const Home = (props) => {
                 When you create a task to trap on Project 3W, you will include the following:
                 <br/>
                 <br/>
-                <span className='first-letter'>W</span>HAT - What is the goal you are trying to accomplish?
+                <span className='first-letter' style={{color: '#ffd700'}}>W</span>HAT - What is the goal you are trying to accomplish?
                 <br/>
-                <span className='first-letter'>W</span>HY  - What is your motivation?  Why do you want to accomplish this goal?
+                <span className='first-letter' style={{color: '#ffd700'}}>W</span>HY  - What is your motivation?  Why do you want to accomplish this goal?
                 <br/>
-                <span className='first-letter'>W</span>HEN - Either set a deadline, or if you want to leave it open-ended, we will track WHEN you finish and let you know how long it took!
+                <span className='first-letter' style={{color: '#ffd700'}}>W</span>HEN - Either set a deadline, or if you want to leave it open-ended, we will track WHEN you finish and let you know how long it took!
                 <br/>
                 Check out our user list and browse their public goals for inspiration!  You can "copy" any goal you see on their lists and modify it for youself, or just keep it the same!  Remember to leave a comment on their goal, cheering them on!
                 </div>

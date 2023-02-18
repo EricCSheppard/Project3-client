@@ -35,7 +35,7 @@ const UsersIndex = (props) => {
                 .catch(err => {
                     msgAlert({
                         heading: 'Error getting users',
-                        message: "there has been an error, please try again",
+                        message: messages.cmntCreateEr,
                         variant: 'danger'
                     })
                     //and error=true
@@ -46,7 +46,7 @@ const UsersIndex = (props) => {
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting users',
-                    message: "there has been an error, please try again",
+                    message: messages.cmntCreateEr,
                     variant: 'danger'
                 })
                 //and error=true
