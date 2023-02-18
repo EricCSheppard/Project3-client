@@ -2,6 +2,9 @@ import { markGoalComplete } from '../../api/goals'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
+import messages from '../shared/AutoDismissAlert/messages'
+
+
 const GoalMarkComplete = (props) => {
 
     const { goal, user, msgAlert } = props

@@ -1,6 +1,9 @@
 import { createGoal } from '../../api/goals'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
+import messages from '../shared/AutoDismissAlert/messages'
+
+
 
 const GoalCopy = (props) => {
 
@@ -30,7 +33,7 @@ const GoalCopy = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: "Goal logged, let's do this!",
+                    message: messages.goalCopySuccess,
                     variant: 'success'
                 })
             })
@@ -38,7 +41,7 @@ const GoalCopy = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure:',
-                    message: 'Something went wrong, please try again!',
+                    message: messages.goalCopyFailure,
                     variant: 'danger'
                 })
             })

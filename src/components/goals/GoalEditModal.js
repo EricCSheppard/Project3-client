@@ -38,7 +38,7 @@ const GoalEditModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: 'Goal updated!',
+                    message: messages.yeyUpdated,
                     variant: 'success'
                 })
             })
@@ -46,7 +46,7 @@ const GoalEditModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure',
-                    message: 'Something went wrong, try again!',
+                    message: messages.noAuth ,
                     variant: 'danger'
                 })
             })

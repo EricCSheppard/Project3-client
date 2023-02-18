@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { createComment } from '../../api/comments'
 // import { createGoalSuccess, createGoalFailure } from'../shared/AutoDismissAlert/messages'
 import CommentForm from '../shared/CommentForm'
+import messages from '../shared/AutoDismissAlert/messages'
+
+
 
 // bring in the useNavigate hook from react-router-dom
 // import { useNavigate } from 'react-router-dom'
@@ -57,7 +60,7 @@ const CreateComment = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure:',
-                    message: 'Something went wrong, please try again!',
+                    message: messages.cmntCreateEr,
                     variant: 'danger'
                 })
             })
