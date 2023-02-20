@@ -65,7 +65,7 @@ const GoalCreate = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: "Goal logged, let's do this!",
+                    message: messages.goalLogged,
                     variant: 'success'
                 })
             })
@@ -73,7 +73,7 @@ const GoalCreate = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure:',
-                    message: 'Something went wrong, please try again!',
+                    message: messages.goalCopyFailure,
                     variant: 'danger'
                 })
             })
