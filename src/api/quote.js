@@ -35,8 +35,8 @@ function Advice() {
   };
 
   return (
-    <div style={{ backgroundColor: '#333'}}>
-<p style={{ color: textColor, fontFamily: 'Bad Script', fontSize: '24px'}}> {advice}</p>
+    <div style={{ backgroundColor: '#333', borderRadius: '10px'}}>
+<p style={{ color: textColor, fontFamily: 'Bad Script', fontSize: '24px', padding: '10px'}}> {advice}</p>
     </div>
   );
 }

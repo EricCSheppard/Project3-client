@@ -10,7 +10,7 @@ const Home = (props) => {
 
 	return (
 
-		<div className="mt-3 container-md" style={{textAlign: 'left', background: 'linear-gradient(to bottom, #b0e0e6, #f0fff0)', minHeight: '100vh'}}>
+		<div className="mt-3 container-md" style={{textAlign: 'left', background: 'linear-gradient(to bottom, #b0e0e6, #f0fff0)', minHeight: '100vh', padding: '15px', borderRadius: '20px'}}>
 
 
 
@@ -47,6 +47,7 @@ const Home = (props) => {
                 <span className='first-letter' style={{color: '#ffd700'}}>W</span>HY  - What is your motivation?  Why do you want to accomplish this goal?
                 <br/>
                 <span className='first-letter' style={{color: '#ffd700'}}>W</span>HEN - Either set a deadline, or if you want to leave it open-ended, we will track WHEN you finish and let you know how long it took!
+                <br/>
                 <br/>
                 Check out our user list and browse their public goals for inspiration!  You can "copy" any goal you see on their lists and modify it for youself, or just keep it the same!  Remember to leave a comment on their goal, cheering them on!
                 </div>

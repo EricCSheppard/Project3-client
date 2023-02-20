@@ -1,13 +1,21 @@
 import { Form, Button, Container } from 'react-bootstrap'
 import Advice from '../../api/quote'
 
+import { Helmet } from "react-helmet"
+
 const GoalForm = (props) => {
     
     const { goal, handleChange, handleSubmit, heading, } = props
 
     return (
         <div>
-        <Container className='justify-content-center' style={{ background: 'linear-gradient(to bottom right, #d7e4f5, #f7d9aa)', height: '100vh' }}>
+            <Helmet>
+                <title>Project 3W</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+                <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Poppins:wght@300&display=swap" rel="stylesheet"/>
+            </Helmet>
+        <Container className='justify-content-center' style={{ background: 'linear-gradient(to bottom right, #d7e4f5, #f7d9aa)', height: '100vh', padding: '10px' }}>
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}/* style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', margin:' 0' padding: '20px', borderRadius: '10px' }}*/>
                 <Form.Group className='m-2'>
@@ -65,12 +73,9 @@ const GoalForm = (props) => {
                 </Form.Group>
                 <Button className='m-2' type='submit'>Submit</Button>
             </Form>
-        </Container>
-        <br/>
         <div>
-            <h5>Your motivational quote of the moment:</h5>
-            <Advice/>
         </div>
+        </Container>
       </div>
     )
 }
