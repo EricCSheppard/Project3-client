@@ -1,13 +1,15 @@
 import { Form, Button, Container } from 'react-bootstrap'
+import Advice from '../../api/quote'
 
 const GoalForm = (props) => {
     
-    const { goal, handleChange, handleSubmit, heading } = props
+    const { goal, handleChange, handleSubmit, heading, } = props
 
     return (
-        <Container className='justify-content-center'>
+        <div>
+        <Container className='justify-content-center' style={{ background: 'linear-gradient(to bottom right, #d7e4f5, #f7d9aa)', height: '100vh' }}>
             <h3>{heading}</h3>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', padding: '20px', borderRadius: '10px' }}>
                 <Form.Group className='m-2'>
                     <Form.Label>Select a category:</Form.Label>
                     <Form.Select
@@ -64,6 +66,12 @@ const GoalForm = (props) => {
                 <Button className='m-2' type='submit'>Submit</Button>
             </Form>
         </Container>
+        <br/>
+        <div>
+            <h5>Your motivational quote of the moment:</h5>
+            <Advice/>
+        </div>
+      </div>
     )
 }
 

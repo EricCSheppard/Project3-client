@@ -13,6 +13,7 @@ function Advice() {
           const randomIndex = Math.floor(Math.random() * data.length);
           const randomQuote = data[randomIndex];
           setAdvice(randomQuote.text);
+          
           setTextColor(getRandomGoldOrDiamondColor()); // Set a random gold or diamond color
         })
         .catch(error => {
@@ -34,8 +35,8 @@ function Advice() {
   };
 
   return (
-    <div style={{ backgroundColor: '#333' }}>
-      <p style={{ color: textColor }}> {advice}</p>
+    <div style={{ backgroundColor: '#333'}}>
+<p style={{ color: textColor, fontFamily: 'Bad Script', fontSize: '24px'}}> {advice}</p>
     </div>
   );
 }
