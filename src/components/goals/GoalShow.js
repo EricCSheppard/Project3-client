@@ -9,6 +9,8 @@ import CreateComment from '../comments/CreateComment'
 import DaysLeftBar from '../shared/ProgressBar'
 import GoalMarkComplete from './GoalMarkComplete'
 
+import messages from '../shared/AutoDismissAlert/messages'
+
 
 const GoalShow = (props) => {
     const [goal, setGoal] = useState(null)

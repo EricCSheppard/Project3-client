@@ -3,6 +3,9 @@ import { createGoal } from '../../api/goals'
 // import { createGoalSuccess, createGoalFailure } from'../shared/AutoDismissAlert/messages'
 import GoalForm from '../shared/GoalForm'
 
+import messages from '../shared/AutoDismissAlert/messages'
+
+
 // bring in the useNavigate hook from react-router-dom
 import { useNavigate } from 'react-router-dom'
 
@@ -62,7 +65,7 @@ const GoalCreate = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: "Goal logged, let's do this!",
+                    message: messages.goalLogged,
                     variant: 'success'
                 })
             })
@@ -70,7 +73,7 @@ const GoalCreate = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure:',
-                    message: 'Something went wrong, please try again!',
+                    message: messages.goalCopyFailure,
                     variant: 'danger'
                 })
             })

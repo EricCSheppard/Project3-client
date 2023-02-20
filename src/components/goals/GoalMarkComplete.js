@@ -2,6 +2,9 @@ import { markGoalComplete } from '../../api/goals'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
+import messages from '../shared/AutoDismissAlert/messages'
+
+
 const GoalMarkComplete = (props) => {
 
     const { goal, user, msgAlert } = props
@@ -25,7 +28,7 @@ const GoalMarkComplete = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Success!',
-                    message: "CONGRATS, I'M SO PROUD OF YOU!",
+                    message: messages.goalCompleted,
                     variant: 'success'
                 })
             })
@@ -33,7 +36,7 @@ const GoalMarkComplete = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Failure:',
-                    message: 'Something went wrong, please try again!',
+                    message: messages.goalCopyFailure,
                     variant: 'danger'
                 })
             })

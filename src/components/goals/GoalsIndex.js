@@ -62,7 +62,7 @@ const GoalsIndex = (props) => {
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting goals',
-                    message: 'could not find any goals',
+                    message: message.notFoundGoals,
                     variant: 'danger'
                 })
                 setError(true)

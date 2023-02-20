@@ -30,7 +30,7 @@ const [updated, setUpdated] = useState(false)
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting profiles',
-                    message: 'there has been an error, try again please',
+                    message: messages.cmntCreateEr,
                     variant: 'danger'
                 })
             })
