@@ -23,11 +23,11 @@ const GoalsIndex = (props) => {
     // console.log('user prop: ',user)
 
     const setBgCondition = (cond) => {
-        if (cond == 'Lifestyle') {
+        if (cond === 'Lifestyle') {
             return ({ backgroundColor: 'lightblue' })
-        } else if (cond == 'Finance') {
+        } else if (cond === 'Finance') {
             return ({ backgroundColor: 'lightgreen' })
-        } else if (cond == 'Health-Fitness') {
+        } else if (cond === 'Health-Fitness') {
             return ({ backgroundColor: 'pink' })
         }
     }
@@ -108,11 +108,11 @@ const GoalsIndex = (props) => {
                     <p>{goal.owner.username} wants to: {goal.what}</p>
                     }
                     {
-            goal.isPublic 
+            !goal.isPublic 
             ?
-            <></>
-            :
             <img className='ms-1' src='/private.png' alt='private icon' width='24' height='24'></img>
+            :
+            null
                     }
                 </Card.Title>
             </Card.Header>
@@ -122,7 +122,7 @@ const GoalsIndex = (props) => {
             </Card.Body>
                 <Card.Footer>
                     <div className='row'>
-                        <Link size='sm' to={`/goals/${goal._id}`} className="m-2 col-3 btn btn-info"style={{width: '60%'}}>Details
+                        <Link size='sm' to={`/goals/${goal._id}`} className="m-2 col-3"style={{width: '60%'}}>Details
                         </Link>
                         {user && goal.owner._id !== user._id ?
                             <GoalCopy

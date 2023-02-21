@@ -52,7 +52,7 @@ const [updated, setUpdated] = useState(false)
     
     return (
         <>
-            <Container style={{ width: '80%' }} className='container-lg m-4 row'>
+            <Container style={{ width: '90%' }} className='container-lg m-4 row'>
                 { user && user._id === profile._id ?
                 <h1>My goals:</h1>
                 :

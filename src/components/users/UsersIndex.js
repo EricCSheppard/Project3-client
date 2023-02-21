@@ -83,7 +83,7 @@ const UsersIndex = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <Link to={`/users/${user._id}`} className="btn btn-info">View {user.username} Profile</Link>
+                <Link to={`/users/${user._id}`} className="btn btn-info">View {user.username}'s Profile</Link>
             </Card.Footer>
         </Card>
     ))

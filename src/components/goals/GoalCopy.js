@@ -50,7 +50,7 @@ const GoalCopy = (props) => {
     return (
         <>
         <Form onSubmit={onSubmit} className='col-4'>
-            <Button size='sm' className='m-2' type='submit'>Copy goal</Button>
+            <Button size='sm' className='m-2' type='submit'>Copy goal!</Button>
         </Form>
         </>
     )

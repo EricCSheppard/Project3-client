@@ -73,8 +73,6 @@ const GoalForm = (props) => {
                 </Form.Group>
                 <Button className='m-2' type='submit'>Submit</Button>
             </Form>
-        <div>
-        </div>
         </Container>
       </div>
     )

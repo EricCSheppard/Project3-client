@@ -8,7 +8,6 @@ import ShowComment from '../comments/ShowComment'
 import CreateComment from '../comments/CreateComment'
 import DaysLeftBar from '../shared/ProgressBar'
 import GoalMarkComplete from './GoalMarkComplete'
-
 import messages from '../shared/AutoDismissAlert/messages'
 
 
@@ -111,7 +110,12 @@ const GoalShow = (props) => {
             
             <Container className="m-5">
                 <Card style={{ width: '80%'}}>
-                    <Card.Header style={setBgCondition(goal.type)}>{goal.what}
+                    <Card.Header style={setBgCondition(goal.type)}>
+                    { goal.owner && user && goal.owner._id === user._id ?
+                    <p>I want to: {goal.what}</p>
+                    :
+                    <p>{goal.owner.username} wants to: {goal.what}</p>
+                    }
                     {
             goal.isPublic 
             ?
