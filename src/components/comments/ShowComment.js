@@ -63,9 +63,6 @@ const ShowComment = (props) => {
                     {comment.note}
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer>
-                
-                </Card.Footer>
             </Card>
         </>
     )

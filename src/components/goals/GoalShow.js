@@ -156,7 +156,7 @@ const GoalShow = (props) => {
                                     { !goal.isComplete ?
                                     <Button 
                                     size='sm'
-                                    className='m-2 col-3'
+                                    className='m-2 col-2'
                                     variant='info'
                                     onClick={() => setEditModalShow(true)}
                                     >
@@ -166,7 +166,7 @@ const GoalShow = (props) => {
                                     null
                                     }
                                     <Button 
-                                        className="m-2 col-3" variant="danger"
+                                        className="m-2 col-2" variant="danger"
                                         onClick={() => deleteGoal()}
                                     >
                                         Remove Goal
